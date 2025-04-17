@@ -1,6 +1,6 @@
 from duckduckgo_search import DDGS
 
-from agentic_llm.tools.base import ToolABC
+from tools.base import ToolABC
 
 
 class DDGSearch(ToolABC):

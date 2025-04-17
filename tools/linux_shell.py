@@ -1,5 +1,5 @@
-from agentic_llm.tools.base import ToolABC
-from agentic_llm.utils.docker import DockerInterface
+from tools.base import ToolABC
+from utils.docker import DockerInterface
 
 
 class LinuxShell(ToolABC):

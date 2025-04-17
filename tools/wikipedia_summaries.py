@@ -2,7 +2,7 @@
 
 import wikipedia
 
-from agentic_llm.tools.base import ToolABC
+from tools.base import ToolABC
 
 
 class WikipediaSummary(ToolABC):

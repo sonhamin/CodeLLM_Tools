@@ -1,6 +1,18 @@
-from agentic_llm.tools.base import ToolABC
-from agentic_llm.utils.docker import DockerInterface
-from agentic_llm.utils.prompt import convert_to_single_line
+from tools.base import ToolABC
+from utils.docker import DockerInterface
+import pipes
+import re
+
+
+def convert_to_single_line(code_snippet: str) -> str:
+    # from https://stackoverflow.com/a/68203945
+
+    regex = r"^(.+?)#\sBEGIN\s#.+?#\sEND\s#(.+)$"
+    core = re.sub(regex, "\\1\\2", code_snippet, 0, re.MULTILINE | re.DOTALL)
+    escaped = f"{core!r}"
+    outer = pipes.quote(f"exec({escaped})")
+    oneline = f"python -c {outer}"
+    return oneline
 
 
 class PythonInterpreter(ToolABC):
